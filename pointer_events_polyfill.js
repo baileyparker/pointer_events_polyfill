@@ -10,16 +10,8 @@ function PointerEventsPolyfill(options){
         selector: '*',
         mouseEvents: ['click','dblclick','mousedown','mouseup'],
         usePolyfillIf: function(){
-            if(navigator.appName == 'Microsoft Internet Explorer')
-            {
-                var agent = navigator.userAgent;
-                if (agent.match(/MSIE ([0-9]{1,}[\.0-9]{0,})/) != null){
-                    var version = parseFloat( RegExp.$1 );
-                    if(version < 11)
-                      return true;
-                }
-            }
-            return false;
+            var dummyStyle = document.createElement('div').style;
+            return 'pointerEvents' in dummyStyle;
         }
     };
     if(options){
